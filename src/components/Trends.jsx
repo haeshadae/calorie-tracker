@@ -37,13 +37,66 @@ function fmtCal(n) {
   return String(n)
 }
 
+// "On goal" = logged something AND within 80–110% of target
+function isOnGoal(total, target) {
+  return total >= target * 0.80 && total <= target * 1.10
+}
+
 function calStreak(data, target) {
   let s = 0
   for (let i = data.length - 1; i >= 0; i--) {
-    if (data[i].total > 0 && data[i].total <= target) s++
+    if (data[i].total > 0 && isOnGoal(data[i].total, target)) s++
     else break
   }
   return s
+}
+
+function InsightBanner({ avg, target, diff }) {
+  const absDiff = Math.abs(diff).toLocaleString()
+  const pctUnder = (target - avg) / target  // positive = under, negative = over
+
+  // Tier 1: significantly under (>20% below target) — concern
+  if (pctUnder > 0.20) {
+    return (
+      <div className="rounded-2xl px-4 py-3.5 border bg-warm-50 border-warm-200 text-sm text-warm-700">
+        <span className="font-semibold">Eating too little —</span>{' '}
+        you're averaging{' '}
+        <span className="font-semibold">{absDiff} kcal under</span>{' '}
+        your goal. Try to eat a bit more to hit your target.
+      </div>
+    )
+  }
+
+  // Tier 2: slightly under (5–20% below target) — neutral
+  if (pctUnder > 0.05) {
+    return (
+      <div className="rounded-2xl px-4 py-3.5 border bg-peach-50 border-peach-100 text-sm text-peach-600">
+        You're averaging{' '}
+        <span className="font-semibold">{absDiff} kcal under</span>{' '}
+        your goal — pretty close. A little more food would round it out.
+      </div>
+    )
+  }
+
+  // Tier 3: on track (within ±5% of target) — positive
+  if (pctUnder >= -0.10) {
+    return (
+      <div className="rounded-2xl px-4 py-3.5 border bg-peach-50 border-peach-100 text-sm text-peach-600">
+        <span className="font-semibold">Great balance!</span>{' '}
+        You're right on track with your calorie goal this week.
+      </div>
+    )
+  }
+
+  // Tier 4: over goal — warning
+  return (
+    <div className="rounded-2xl px-4 py-3.5 border bg-blush-50 border-blush-100 text-sm text-blush-400">
+      <span className="font-semibold">Heads up —</span>{' '}
+      you're averaging{' '}
+      <span className="font-semibold">{absDiff} kcal over</span>{' '}
+      your goal this week.
+    </div>
+  )
 }
 
 export default function Trends({ logs, target }) {
@@ -75,7 +128,7 @@ export default function Trends({ logs, target }) {
   // Stats
   const logged = data.filter((d) => d.total > 0)
   const avg = logged.length ? Math.round(logged.reduce((s, d) => s + d.total, 0) / logged.length) : 0
-  const daysOnTarget = data.filter((d) => d.total > 0 && d.total <= target).length
+  const daysOnTarget = data.filter((d) => d.total > 0 && isOnGoal(d.total, target)).length
   const streak = calStreak(data, target)
   const diff = avg - target
 
@@ -253,29 +306,7 @@ export default function Trends({ logs, target }) {
 
       {/* Insight banner */}
       {avg > 0 ? (
-        <div
-          className={`rounded-2xl px-4 py-3.5 border text-sm ${
-            diff <= 0
-              ? 'bg-peach-50 border-peach-100 text-peach-600'
-              : 'bg-blush-50 border-blush-100 text-blush-400'
-          }`}
-        >
-          {diff <= 0 ? (
-            <>
-              <span className="font-semibold">Nice work!</span>{' '}
-              You're averaging{' '}
-              <span className="font-semibold">{Math.abs(diff).toLocaleString()} kcal under</span>{' '}
-              your goal this week.
-            </>
-          ) : (
-            <>
-              <span className="font-semibold">Heads up —</span>{' '}
-              you're averaging{' '}
-              <span className="font-semibold">{diff.toLocaleString()} kcal over</span>{' '}
-              your goal this week.
-            </>
-          )}
-        </div>
+        <InsightBanner avg={avg} target={target} diff={diff} />
       ) : (
         <div className="rounded-2xl px-4 py-3.5 border border-warm-100 bg-warm-50 text-sm text-warm-400 text-center">
           Log some meals to start seeing your weekly trends.

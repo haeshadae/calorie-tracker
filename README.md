@@ -1,16 +1,53 @@
-# React + Vite
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# calorie-tracker
+# 🌸 Bloom — Personal Calorie Tracker
+A web app that uses AI to estimate calories from natural language food entries and tracks your daily intake against a personalized calorie target — no barcode scanning, no food database, just type what you ate.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎥 **Demo Video:** [Watch the demo](https://www.loom.com/share/a0e9a5a12c964b58845ea783f2c93586)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ What It Does
 
-## Expanding the ESLint configuration
+1. **Onboarding** — enter your name, gender, height, weight, age, and activity level
+2. **Mifflin-St Jeor equation** calculates your BMR and adjusts for activity level to give you your personal daily calorie target (TDEE)
+3. **Natural language logging** — type "two eggs, toast, and a coffee" and Claude identifies each item and estimates calories
+4. **Daily tracking** — log by meal, edit or delete entries, totals recalculate automatically
+5. **7-day trends chart** — visualize your intake vs. your target over time
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Result:
+A clean, AI-powered calorie tracker that feels as simple as texting.
+
+---
+
+## 🧠 Why I Built This
+
+I wanted to explore building a full consumer-facing web app using Claude Code — from scaffolding the project to deploying on Netlify. Bloom was a way to learn the end-to-end workflow while building something actually useful.
+
+---
+
+## ⚙️ Architecture
+
+User Input → Anthropic API → Calorie Estimate → localStorage → Dashboard + Trends Chart
+
+---
+
+## 📁 Repository Structure
+
+- `/src` — React components and app logic
+- `/netlify/functions` — serverless function that calls the Anthropic API
+- `/public` — static assets
+
+---
+
+## 🔒 Security
+
+No API keys or personal data are stored in this repository. The Anthropic API key is stored locally in a `.env` file and injected server-side via Netlify Functions.
+
+---
+
+Built using Claude Code.
+
+---

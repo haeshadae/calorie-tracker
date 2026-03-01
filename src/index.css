@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Peach palette */
+  --color-peach-50: #FFF5F0;
+  --color-peach-100: #FFE8DC;
+  --color-peach-200: #FFCFBF;
+  --color-peach-300: #FFB09A;
+  --color-peach-400: #FF8C73;
+  --color-peach-500: #FF6B52;
+  --color-peach-600: #E85038;
+
+  /* Blush/pink palette */
+  --color-blush-50: #FFF0F5;
+  --color-blush-100: #FFE0EC;
+  --color-blush-200: #FFB5C8;
+  --color-blush-300: #FF8FAA;
+  --color-blush-400: #FF6688;
+
+  /* Warm neutrals */
+  --color-warm-50: #FAF5F4;
+  --color-warm-100: #F0E8E7;
+  --color-warm-200: #DEC8C7;
+  --color-warm-300: #C4A4A3;
+  --color-warm-400: #A67F7E;
+  --color-warm-500: #8A6160;
+  --color-warm-600: #6E4847;
+  --color-warm-700: #5C3D3C;
+  --color-warm-800: #3D2828;
+  --color-warm-900: #2D1818;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FFF5F0;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}

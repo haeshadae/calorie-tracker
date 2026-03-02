@@ -5,7 +5,7 @@
 A web app that uses AI to estimate calories from natural language food entries and tracks your daily intake against a personalized calorie target — no barcode scanning, no food database, just type what you ate.
 
 
-🎥 **Demo Video:** [Watch the demo](https://www.loom.com/share/a0e9a5a12c964b58845ea783f2c93586)
+🎥 **Demo Video:** [Watch the demo](https://drive.google.com/file/d/1MNwUpuauW_q-bTO5le8ynhgjVt48AN85/view?usp=drive_link)
 
 ---
 

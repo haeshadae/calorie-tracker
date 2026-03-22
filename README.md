@@ -6,6 +6,7 @@ A web app that uses AI to estimate calories from natural language food entries a
 
 
 🎥 **Demo Video:** [Watch the demo](https://drive.google.com/file/d/1MNwUpuauW_q-bTO5le8ynhgjVt48AN85/view?usp=drive_link)
+🔗 **Test it out:** [Try here](https://jade-rugelach-de3ed8.netlify.app/)
 
 ---
 

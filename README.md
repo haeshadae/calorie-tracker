@@ -6,13 +6,13 @@ A web app that uses AI to estimate calories from natural language food entries a
 
 
 🎥 **Demo Video:** [Watch the demo](https://drive.google.com/file/d/1MNwUpuauW_q-bTO5le8ynhgjVt48AN85/view?usp=drive_link)
-🔗 **Test it out:** [Try here](https://jade-rugelach-de3ed8.netlify.app/)
+🔗 **Test it out:** [Try here](https://jade-rugelach-de3ed8.netlify.app/) (updated to state 'Biological Sex' instead of 'Gender')
 
 ---
 
 ## ✨ What It Does
 
-1. **Onboarding** — enter your name, gender, height, weight, age, and activity level
+1. **Onboarding** — enter your name, biological sex, height, weight, age, and activity level
 2. **Mifflin-St Jeor equation** calculates your BMR and adjusts for activity level to give you your personal daily calorie target (TDEE)
 3. **Natural language logging** — type "two eggs, toast, and a coffee" and Claude identifies each item and estimates calories
 4. **Daily tracking** — log by meal, edit or delete entries, totals recalculate automatically
